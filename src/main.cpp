@@ -27,7 +27,7 @@ void geraCena(Objeto* objetos, int n_objetos, int tempo) {
 	// Ordena objetos por profundidade (y crescente)
 	ordenarObjetos(objetos, n_objetos);
 
-	// Vetor para armazenar trechos jC! cobertos (oclusos)
+	// Vetor para armazenar trechos ja cobertos (oclusos)
 	const int MAX_SEG = 100;
 	double ocupados[MAX_SEG][2];
 	int n_ocupados = 0;
@@ -38,7 +38,7 @@ void geraCena(Objeto* objetos, int n_objetos, int tempo) {
 		double fim = objetos[i].fim();
 		bool visivel = true;
 
-		// Verifica se estC! completamente coberto
+		// Verifica se esta completamente coberto
 		for (int j = 0; j < n_ocupados; j++) {
 			if (ini >= ocupados[j][0] && fim <= ocupados[j][1]) {
 				visivel = false;
