@@ -18,10 +18,10 @@ void Objeto::alteraxy(double novoX, double novoY) {
 
 // retorna o início do objeto
 double Objeto::inicio() const {
-    return x - largura / 2.0f;
+    return x - largura / 2.0;
 }
 
 // retona o final do objeto 
 double Objeto::fim() const {
-   return x + largura / 2.0f;
+   return x + largura / 2.0;
 }

@@ -3,14 +3,14 @@
 
 class Objeto {
 private:
-    int id;
+    int id; // ID do objeto
     double x, y, largura;    // x = centro no eixo X, y = profundidade, largura do objeto
  
 public:
     // construtor
     Objeto(int id = -1, double x = 0, double y = 0, double largura = 0);
 
-    // getters
+    // acesso aos dados
     int getId() const;
     double getX() const;
     double getY() const;

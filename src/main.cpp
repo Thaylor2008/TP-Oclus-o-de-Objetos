@@ -8,11 +8,11 @@ using namespace std;
 
 void ordenarObjetos(Objeto* objetos, int n_objetos) {
 	for (int i = 0; i < n_objetos - 1; i++) {
-		for (int j = i + 1; j < n_objetos; j++) {
-			if (objetos[i].getY() > objetos[j].getY()) {
-				Objeto temp = objetos[i];
-				objetos[i] = objetos[j];
-				objetos[j] = temp;
+		for (int j = 0; j < n_objetos - i - 1; j++) {
+			if (objetos[j].getY() > objetos[j + 1].getY()) {
+				Objeto temp = objetos[j];
+				objetos[j] = objetos[j + 1];
+				objetos[j + 1] = temp;
 			}
 		}
 	}
@@ -66,6 +66,7 @@ void geraCena(Objeto* objetos, int n_objetos, int tempo) {
 	}
 
 	// Imprime a cena formatada (2 casas decimais)
+
 	cena.imprimir();
 }
 
@@ -78,13 +79,14 @@ int main(int argc, char* argv[]) {
 	}
 
 	ifstream arquivo(argv[1]);
-	if (!arquivo) {
-		cerr << "Erro ao abrir arquivo!" << endl;
-		return 1;
-	}
+	if (!arquivo.is_open()) {
+    cerr << "Erro: não foi possível abrir o arquivo " << argv[1] << endl;
+    return 1;
+}
+
 	int n_objetos = 0;
 	int capacidade = 10;
-	Objeto* todos_objetos = new Objeto[capacidade]; // vetor dinC"mico
+	Objeto* todos_objetos = new Objeto[capacidade]; // vetor dinamico que guarda os objetos
 
 	char comando;
 
@@ -138,6 +140,6 @@ int main(int argc, char* argv[]) {
 	}
 
 	arquivo.close();
-	delete[] todos_objetos; // libera memC3ria
+	delete[] todos_objetos; // libera memoria
 	return 0;
 }
