@@ -13,18 +13,19 @@ struct TrechoVisivel {
 
 class Cena {
 private:
+    
     int tempo;
-    int n;        // número de objetos visíveis 
-    int cap;      // capacidade máxima de objetos
-    TrechoVisivel* visiveis; // ponteiro para vetor dinâmico
+    int n;        // número de objetos visíveis
+    static const int cap_max = 100;
+    TrechoVisivel visiveis[cap_max];
 
 public:
-    Cena(int tempo = 0, int capacidade = 10);
-    ~Cena(); // destrutor para liberar memória
+    Cena(int tempo = 0, int capacidade = 100); // construtor
 
+    int getTempo() const;
     void adicionarVisivel(int id, double inicio, double fim);
     void imprimir() const;
-    int getTempo() const;
+    
 };
 
 #endif

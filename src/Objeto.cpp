@@ -1,4 +1,4 @@
-#include "Objeto.hpp"
+#include "Objeto.h"
 
 // construtor
 Objeto::Objeto(int id, double x, double y, double largura)

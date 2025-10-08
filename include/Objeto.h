@@ -19,11 +19,9 @@ public:
     //função pra mover objeto, atualiza x e y
     void alteraxy(double novoX, double novoY);
 
-    // Função para cálcular os limites
     // O início do objeto 
     double inicio() const;
     // O fim do objeto
     double fim() const;
-};
-
+};  
 #endif

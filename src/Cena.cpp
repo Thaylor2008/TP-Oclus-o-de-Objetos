@@ -1,52 +1,47 @@
 // src/Cena.cpp
-#include "Cena.hpp"
+#include "Cena.h"
 #include <iomanip>
 #include <cstdlib>
 
 
 Cena::Cena(int tempo, int capacidade)
-    : tempo(tempo), n(0), cap(capacidade) 
-{
-    visiveis = new TrechoVisivel[capacidade]; // aloca vetor
-}
+    : tempo(tempo), n(0) {}
 
-Cena::~Cena() {
-    delete[] visiveis; // destrutor, libera memória
-}
 
 void Cena::adicionarVisivel(int id, double inicio, double fim) {
-    if (n >= cap) {
-        // aumenta a capacidade quando encher o vetor (crescimento dinâmico)
-        int novaCap = cap * 2;
-        TrechoVisivel* novoVet = new TrechoVisivel[novaCap];
-
-        // copia os elementos antigos
-        for (int i = 0; i < n; i++) {
-            novoVet[i] = visiveis[i];
-        }
-
-        // libera o vetor antigo
-        delete[] visiveis;
-        visiveis = novoVet;
-        cap = novaCap;
+    if (n < cap_max) {
+        visiveis[n].id = id;
+        visiveis[n].inicio = inicio;
+        visiveis[n].fim = fim;
+        n++;
     }
-
-    visiveis[n].id = id;
-    visiveis[n].inicio = inicio;
-    visiveis[n].fim = fim;
-    n++;
+}
+int Cena::getTempo() const {
+    return tempo;
 }
 
 void Cena::imprimir() const {
     std::cout << std::fixed << std::setprecision(2);
+
+    TrechoVisivel copia[cap_max];
+    for (int i = 0; i < n; i++) copia[i] = visiveis[i];
+
+    // ordena por id
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (copia[j].id > copia[j + 1].id) {
+                TrechoVisivel temp = copia[j];
+                copia[j] = copia[j + 1];
+                copia[j + 1] = temp;
+            }
+        }
+    }
+
+    // imprime em ordem de id
     for (int i = 0; i < n; i++) {
         std::cout << "S " << tempo << " "
-                  << visiveis[i].id << " "
-                  << visiveis[i].inicio << " "
-                  << visiveis[i].fim << std::endl;
+                  << copia[i].id << " "
+                  << copia[i].inicio << " "
+                  << copia[i].fim << std::endl;
     }
-}
-
-int Cena::getTempo() const {
-    return tempo;
 }
