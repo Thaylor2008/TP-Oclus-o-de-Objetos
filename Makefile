@@ -1,9 +1,6 @@
-# ============================================
 #   Makefile - Trabalho Prático 1 (ED 2025/2)
 #   Autor: Thaylor
 #   Linguagem: C++
-#   Estrutura padrão exigida pelo enunciado
-# ============================================
 
 # Compilador e flags
 CXX = g++
@@ -21,9 +18,7 @@ OBJ_FILES = $(OBJ_DIR)/main.o $(OBJ_DIR)/Objeto.o $(OBJ_DIR)/Cena.o
 # Executável final
 EXEC = $(BIN_DIR)/tp1.out
 
-# ============================
 # Regra principal
-# ============================
 all: $(EXEC)
 
 # Geração do executável
@@ -36,9 +31,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@mkdir -p $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# ============================
 # Limpeza
-# ============================
 clean:
 	rm -rf $(OBJ_DIR) $(BIN_DIR)
 
